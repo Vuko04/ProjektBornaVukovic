@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ warehouse.name }}{% endblock %}
+{% block content %}
+  <div class="bg-white border border-slate-200 rounded-xl p-6">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-bold">{{ warehouse.name }}</h1>
+        <p class="text-slate-600">{{ warehouse.city }}</p>
+      </div>
+      <div>
+        <a class="px-3 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-sm font-semibold mr-2"
+           href="{% url 'warehouse_edit' warehouse.pk %}">Edit</a>
+        <a class="px-3 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white text-sm font-semibold"
+           href="{% url 'warehouse_delete' warehouse.pk %}">Delete</a>
+      </div>
+    </div>
+
+    <div class="mt-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+      <div class="text-slate-600 text-sm">Kapacitet</div>
+      <div class="text-2xl font-bold">{{ warehouse.capacity }}</div>
+    </div>
+
+    <div class="mt-6">
+      <a class="text-blue-700 hover:underline" href="{% url 'warehouse_list' %}">← Nazad</a>
+    </div>
+  </div>
+{% endblock %}

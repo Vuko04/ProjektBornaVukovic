@@ -1,0 +1,116 @@
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --brand:#2563eb;
+  --danger:#dc2626;
+  --danger-bg:#fee2e2;
+  --ok:#16a34a;
+  --ok-bg:#dcfce7;
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+a{ color:var(--brand); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+.nav{
+  background:var(--card);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+}
+.nav-left, .nav-right{ display:flex; gap:12px; align-items:center; }
+.brand{ font-weight:700; color:var(--text); }
+.container{
+  max-width:980px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+}
+.grid-3{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+@media (max-width: 760px){
+  .grid-3{ grid-template-columns: 1fr; }
+}
+
+.kpi{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.kpi .label{ color:var(--muted); font-size:14px; }
+.kpi .value{ font-size:28px; font-weight:700; }
+
+.table{
+  width:100%;
+  border-collapse: collapse;
+}
+.table th, .table td{
+  border-top:1px solid var(--line);
+  padding:10px 8px;
+  text-align:left;
+  vertical-align:top;
+}
+.table th{ color:var(--muted); font-weight:600; font-size:14px; }
+.table tr:hover{ background:#fafafa; }
+
+.actions a{ margin-right:10px; }
+
+.badge{
+  display:inline-block;
+  padding: 2px 8px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+}
+.badge-low{ background:var(--danger-bg); color:var(--danger); }
+.badge-ok{ background:var(--ok-bg); color:var(--ok); }
+
+input[type="text"], input[type="password"], input[type="number"], select{
+  width:100%;
+  padding:10px 10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff;
+}
+button{
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--brand);
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+button:hover{ filter: brightness(0.95); }
+.btn-secondary{
+  background:white;
+  color:var(--text);
+}
+.form-row{ margin-bottom:12px; }
+.small{ color:var(--muted); font-size:14px; }

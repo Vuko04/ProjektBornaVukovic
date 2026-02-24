@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+  <div class="bg-white border border-slate-200 rounded-xl p-6">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-bold">{{ product.name }}</h1>
+        <p class="text-slate-600">SKU: {{ product.sku }}</p>
+      </div>
+      <div>
+        <a class="px-3 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-sm font-semibold mr-2"
+           href="{% url 'product_edit' product.pk %}">Edit</a>
+        <a class="px-3 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white text-sm font-semibold"
+           href="{% url 'product_delete' product.pk %}">Delete</a>
+      </div>
+    </div>
+
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <div class="text-slate-600 text-sm">Cijena</div>
+        <div class="text-xl font-bold">{{ product.price }}</div>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <div class="text-slate-600 text-sm">Reorder level</div>
+        <div class="text-xl font-bold">{{ product.reorder_level }}</div>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <div class="text-slate-600 text-sm">Status</div>
+        <div class="text-sm text-slate-700">Koristi se za “low stock” upozorenja.</div>
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <a class="text-blue-700 hover:underline" href="{% url 'product_list' %}">← Nazad</a>
+    </div>
+  </div>
+{% endblock %}

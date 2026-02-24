@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Skladišta{% endblock %}
+{% block content %}
+  <div class="flex items-start justify-between gap-4 mb-4">
+    <div>
+      <h1 class="text-2xl font-bold">Skladišta</h1>
+      <p class="text-slate-600">Popis skladišta i kapaciteta.</p>
+    </div>
+    <a href="{% url 'warehouse_add' %}"
+       class="px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold">
+      + Dodaj
+    </a>
+  </div>
+
+  <div class="bg-white border border-slate-200 rounded-xl p-4 overflow-x-auto">
+    <table class="min-w-full text-sm">
+      <thead class="text-slate-600">
+        <tr class="border-b border-slate-200">
+          <th class="text-left py-2 pr-4">Naziv</th>
+          <th class="text-left py-2 pr-4">Grad</th>
+          <th class="text-left py-2 pr-4">Kapacitet</th>
+          <th class="text-left py-2 pr-4">Akcije</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for w in warehouses %}
+          <tr class="border-b border-slate-100">
+            <td class="py-2 pr-4">
+              <a class="font-semibold text-blue-700 hover:underline" href="{% url 'warehouse_detail' w.pk %}">
+                {{ w.name }}
+              </a>
+            </td>
+            <td class="py-2 pr-4 text-slate-600">{{ w.city }}</td>
+            <td class="py-2 pr-4 font-semibold">{{ w.capacity }}</td>
+            <td class="py-2 pr-4">
+              <a class="text-blue-700 hover:underline mr-3" href="{% url 'warehouse_edit' w.pk %}">Edit</a>
+              <a class="text-red-700 hover:underline" href="{% url 'warehouse_delete' w.pk %}">Delete</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td class="py-3 text-slate-600" colspan="4">Nema skladišta.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

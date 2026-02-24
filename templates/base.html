@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Inventar{% endblock %}</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+  <nav class="bg-white border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <a href="{% url 'home' %}" class="font-bold text-slate-900">Inventar</a>
+        <a href="{% url 'product_list' %}" class="text-slate-600 hover:text-slate-900">Proizvodi</a>
+        <a href="{% url 'warehouse_list' %}" class="text-slate-600 hover:text-slate-900">Skladišta</a>
+        <a href="{% url 'stockitem_list' %}" class="text-slate-600 hover:text-slate-900">Zalihe</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        {% if user.is_authenticated %}
+          <span class="text-sm text-slate-600">👤 {{ user.username }}</span>
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit"
+              class="px-3 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-sm font-semibold">
+              Logout
+            </button>
+          </form>
+        {% else %}
+          <a href="{% url 'login' %}" class="text-sm font-semibold text-slate-700 hover:text-slate-900">Login</a>
+          <a href="{% url 'register' %}"
+             class="px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold">
+            Registracija
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-5xl mx-auto px-4 py-6">
+    {% block content %}{% endblock %}
+  </main>
+
+</body>
+</html>

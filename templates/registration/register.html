@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Registracija{% endblock %}
+{% block content %}
+  <div class="max-w-md mx-auto bg-white border border-slate-200 rounded-xl p-6">
+    <h1 class="text-xl font-bold mb-2">Registracija</h1>
+    <p class="text-slate-600 mb-4">Kreiraj račun za korištenje aplikacije.</p>
+
+    <form method="post" class="space-y-3">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="w-full px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold" type="submit">
+        Kreiraj račun
+      </button>
+    </form>
+
+    <p class="text-sm text-slate-600 mt-4">
+      Već imaš račun? <a class="text-blue-700 hover:underline" href="{% url 'login' %}">Login</a>
+    </p>
+  </div>
+{% endblock %}

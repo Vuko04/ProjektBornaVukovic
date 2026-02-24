@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Detalj zalihe{% endblock %}
+{% block content %}
+  <div class="bg-white border border-slate-200 rounded-xl p-6">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-bold">Detalj zalihe</h1>
+        <p class="text-slate-600">{{ stockitem.product.name }} ({{ stockitem.product.sku }})</p>
+      </div>
+      <div>
+        <a class="px-3 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-sm font-semibold mr-2"
+           href="{% url 'stockitem_edit' stockitem.pk %}">Edit</a>
+        <a class="px-3 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white text-sm font-semibold"
+           href="{% url 'stockitem_delete' stockitem.pk %}">Delete</a>
+      </div>
+    </div>
+
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <div class="text-slate-600 text-sm">Skladište</div>
+        <div class="font-semibold">{{ stockitem.warehouse.name }}</div>
+        <div class="text-slate-600 text-sm">{{ stockitem.warehouse.city }}</div>
+      </div>
+
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <div class="text-slate-600 text-sm">Količina</div>
+        <div class="text-2xl font-bold">{{ stockitem.quantity }}</div>
+        <div class="text-slate-600 text-sm">Reorder: {{ stockitem.product.reorder_level }}</div>
+      </div>
+
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <div class="text-slate-600 text-sm">Status</div>
+        {% if stockitem.quantity <= stockitem.product.reorder_level %}
+          <span class="inline-flex items-center px-2 py-1 rounded-full bg-red-100 text-red-700 text-xs font-semibold">
+            LOW STOCK
+          </span>
+        {% else %}
+          <span class="inline-flex items-center px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs font-semibold">
+            OK
+          </span>
+        {% endif %}
+        <div class="text-slate-600 text-sm mt-2">Ažurirano: {{ stockitem.updated_at }}</div>
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <a class="text-blue-700 hover:underline" href="{% url 'stockitem_list' %}">← Nazad</a>
+    </div>
+  </div>
+{% endblock %}
